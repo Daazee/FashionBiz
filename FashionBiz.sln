@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionBiz.Api", "FashionBiz.Api\FashionBiz.Api.csproj", "{BCDDD5DD-65A6-437F-A19C-F4FBA7A18693}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FashionBiz.App", "FashionBiz.App\FashionBiz.App.csproj", "{0676863B-F296-49B7-9F36-BF040D799704}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BCDDD5DD-65A6-437F-A19C-F4FBA7A18693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCDDD5DD-65A6-437F-A19C-F4FBA7A18693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCDDD5DD-65A6-437F-A19C-F4FBA7A18693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCDDD5DD-65A6-437F-A19C-F4FBA7A18693}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0676863B-F296-49B7-9F36-BF040D799704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0676863B-F296-49B7-9F36-BF040D799704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0676863B-F296-49B7-9F36-BF040D799704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0676863B-F296-49B7-9F36-BF040D799704}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {645C1F19-962E-4208-9714-B58156849127}
+	EndGlobalSection
+EndGlobal

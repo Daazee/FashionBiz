@@ -1,0 +1,78 @@
+﻿@page
+@model FashionBiz.App.Pages.Security.LoginModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Pages/Shared/_FashionLoginLayout.cshtml";
+}
+
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Login to Fashion</h5>
+    <p class="text-center small">Enter your username & password to login</p>
+</div>
+
+
+@Html.AntiForgeryToken()
+<form class="row g-3" method="post">
+    <div class="container">
+        <div class="text-success">
+            <!-- Error Message Here-->
+        </div>
+    </div>
+    <div class="col-12">
+        <label for="yourUsername" class="form-label">Username</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend"></span>
+            <input type="text" asp-for="LoginViewModel!.username"  class="form-control" required />
+                
+                
+                @*name="LoginViewModel!.username" class="form-control" id="LoginViewModel!.username" required>*@
+            <div class="invalid-feedback">Please enter your username.</div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <label for="yourPassword" class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" id="password" required>
+        <div class="invalid-feedback">Please enter your password!</div>
+    </div>
+    <div class="col-12">
+        <input type="submit" value="Login" class="btn btn-primary w-100" id="login" />
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+
+        //    $('#login').click(function(e) {
+        //        debugger;
+        //        e.preventDefault();
+
+        //        let loginDetails = {};
+        //        loginDetails.username = "azeez";
+        //        let request = JSON.stringify(loginDetails);
+        //        $.ajax({
+        //            url: '/Security/Login?handler=UserLogin',
+        //            dataType: 'json',
+        //            contentType: "application/json",
+        //            type: "POST",
+        //            //data: loginDetails,
+        //            beforeSend: function (xhr) {
+        //                xhr.setRequestHeader("XSRF-TOKEN",
+        //                    $('input:hidden[name="__RequestVerificationToken"]').val());
+        //            },
+        //            success: function(response) {
+        //                debugger
+        //                console.log(response)
+        //                if (response === "pass")
+        //                    alert("You Passed. Please check result details");
+        //                else
+        //                    alert("You Failed. Please check result details");
+        //            }
+        //        });
+
+        //    })
+              })
+    </script>
+}

@@ -1,0 +1,111 @@
+﻿@page
+@model FashionBiz.App.Pages.Customer.NewCustomerModel
+@{
+    ViewData["Title"] = "Customer Registration";
+    Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>New Customer</h1>
+</div>
+<hr />
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <span>@ViewData["Message"]</span>
+            <form asp-action="">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">FirstName</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="Firstname" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">lastName</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="lastname" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Phone Number</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="PhoneNumber" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Email Address</label>
+                    <div class="col-sm-6">
+                        <input type="email" name="EmailAddress" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Address Line 1</label>
+                    <div class="col-sm-6">
+                        <input type="email" name="AddressLine1" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Address Line 2</label>
+                    <div class="col-sm-6">
+                        <input type="email" name="AddressLine2" class="form-control" />
+                    </div>
+                </div>
+
+                <fieldset class="row mb-3">
+                    <legend class="col-form-label col-sm-2 pt-0"></legend>
+                    <div class="col-sm-6">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Sex" id="Sex" value="Male">
+                            <label class="form-check-label">Male</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Sex" id="Sex" value="Female">
+                            <label class="form-check-label">Female</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+                <div class="row mb-3">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<input type="button" id="AddCart" onclick="clickbtn()" value="Submit" style="display:none" />
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+
+        function clickbtn() {
+            $.ajax({
+                url: "/Customer/NewCustomer?handler=AddToCart",
+                type: 'POST',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                success: function() {
+                    alert("success");
+                },
+                complete: function() {
+                    alert("complete")
+                },
+                failure: function() {
+                    alert("failure");
+                }
+            });
+        }
+    </script>
+}

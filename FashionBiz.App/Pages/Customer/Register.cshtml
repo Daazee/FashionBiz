@@ -1,0 +1,69 @@
+﻿@page
+@model FashionBiz.App.Pages.Customer.RegisterModel
+@{
+    ViewData["Title"] = "Register Customer";
+    Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Customer Registration</h1>
+</div>
+<hr />
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Last name</label>
+                    <div class="col-sm-6">
+                        <input id="lastname" name="lastname" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">First name</label>
+                    <div class="col-sm-6">
+                        <input id="firstname" name="firstname" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Sex</label>
+
+                    <div class="col-sm-6">
+                        <select name="Subject" id="sex" class="form-control">
+                            <option value="Select" selected>Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Address Line 1</label>
+                    <div class="col-sm-6">
+                        <textarea name="address_line_1" class="form-control"> </textarea>
+                    </div>
+                </div>
+
+                 <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Address Line 2</label>
+                    <div class="col-sm-6">
+                        <textarea name="address_line_2" class="form-control"> </textarea>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                  <input type="submit" value="Create" class="btn btn-primary col-sm-6 offset-md-2" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
