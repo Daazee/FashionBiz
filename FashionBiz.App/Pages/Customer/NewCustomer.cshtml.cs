@@ -32,7 +32,7 @@ namespace FashionBiz.App.Pages.Customer
         public string AddressLine2 { get; set; }
 
         [BindProperty]
-        public string Sex { get; set; }
+        public string Gender { get; set; }
 
         public async Task<IActionResult> OnGet()
         {
@@ -70,7 +70,7 @@ namespace FashionBiz.App.Pages.Customer
                     FirstName = Firstname,
                     AddressLine1 = AddressLine1,
                     AddressLine2 =AddressLine2,
-                    Sex = Sex,
+                    Gender = Gender,
                     EmailAddress = EmailAddress,
                     PhoneNumber = PhoneNumber,
                     CompanyId = 0

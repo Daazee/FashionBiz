@@ -59,20 +59,16 @@
                 </div>
 
                 <fieldset class="row mb-3">
-                    <legend class="col-form-label col-sm-2 pt-0"></legend>
+                    <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
                     <div class="col-sm-6">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Sex" id="Sex" value="Male" checked='@Model.Sex=="Male"? "checked": ""'>
-                            <label class="form-check-label">Male</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="Sex" id="Sex" value="Female" checked='@Model.Sex=="Female"? "checked": ""'>
-                            <label class="form-check-label">Female</label>
-                        </div>
+                        @foreach (var gender in Model.Genders)
+                        {
+                            <input type="radio" asp-for="Gender" value="@gender" class="form-check-input" />
+                            @gender
+                            <br />
+                        }
                     </div>
                 </fieldset>
-
-
                 <div class="row mb-3">
                     <input type="submit" value="Create" class="btn btn-primary col-sm-6 offset-md-2" />
                 </div>
@@ -81,7 +77,7 @@
 
         <div class="col-lg-4" id="related-menu">
             <ul>
-                 <li><a href="/customer/mymeasurements?customerId=@Model.CustomerId">Measurements</a></li>
+                <li><a href="/customer/mymeasurements?customerId=@Model.CustomerId">Measurements</a></li>
                 <li><a href="/customer/newmeasurement">New</a></li>
             </ul>
         </div>
@@ -94,7 +90,7 @@
 
 @section Styles{
     <style>
-      #related-menu  ul {
+        #related-menu ul {
             list-style-type: none;
             margin: 0;
             padding: 0;
@@ -102,17 +98,17 @@
             background-color: #f1f1f1;
         }
 
-      #related-menu ul li a {
-            display: block;
-            color: #000;
-            padding: 8px 16px;
-            text-decoration: none;
-        }
-
-            /* Change the link color on hover */
-       #related-menu  ul li a:hover {
-                background-color: #555;
-                color: white;
+            #related-menu ul li a {
+                display: block;
+                color: #000;
+                padding: 8px 16px;
+                text-decoration: none;
             }
+
+                /* Change the link color on hover */
+                #related-menu ul li a:hover {
+                    background-color: #555;
+                    color: white;
+                }
     </style>
 }

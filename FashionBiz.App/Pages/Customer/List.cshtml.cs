@@ -21,7 +21,7 @@ namespace FashionBiz.App.Pages.Customer
 
         public string AddressLine2 { get; set; }
 
-        public string Sex { get; set; }
+        public string Gender { get; set; }
 
         public string EmailAddress { get; set; }
 

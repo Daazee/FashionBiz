@@ -34,8 +34,10 @@ namespace FashionBiz.App.Pages.Customer
         public string AddressLine2 { get; set; }
 
         [BindProperty]
-        public string Sex { get; set; }
-        public async Task OnGetAsync(int customerId)
+        public string Gender { get; set; }
+        public string[] Genders = new[] { "Male", "Female"};
+    
+    public async Task OnGetAsync(int customerId)
         {
             try
             {
@@ -57,7 +59,7 @@ namespace FashionBiz.App.Pages.Customer
                     EmailAddress = EditCustomerPageModel.EmailAddress;
                     AddressLine1 = EditCustomerPageModel.AddressLine1;
                     AddressLine2 = EditCustomerPageModel.AddressLine2;
-                    Sex = EditCustomerPageModel.Sex;
+                    Gender = EditCustomerPageModel.Gender;
 
 
 
@@ -92,7 +94,7 @@ namespace FashionBiz.App.Pages.Customer
                     FirstName = Firstname,
                     AddressLine1 = AddressLine1,
                     AddressLine2 = AddressLine2,
-                    Sex = Sex,
+                    Gender = Gender,
                     EmailAddress = EmailAddress,
                     PhoneNumber = PhoneNumber,
                     CompanyId = 0
