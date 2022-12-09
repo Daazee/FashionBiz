@@ -39,7 +39,7 @@ namespace FashionBiz.App.Pages.Customer
             try
             {
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
-                string url = $"{apiBaseUrl}http://localhost:5029/api/customer/";
+                string url = $"{apiBaseUrl}/api/customer/";
 
                 //if (Convert.ToInt16(response.StatusCode) == 200)
                 //{
@@ -61,7 +61,7 @@ namespace FashionBiz.App.Pages.Customer
             try
             {
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
-                string url = $"{apiBaseUrl}http://localhost:5029/api/customer/";
+                string url = $"{apiBaseUrl}/api/customer/";
 
                 object customer = new
                 {
