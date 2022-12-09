@@ -47,7 +47,7 @@ namespace FashionBiz.App.Pages.Customer
             try
             {
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
-                string url = $"{apiBaseUrl}/api/CustomerMeasurement/GetCustomerMeasurement/{customerId}";
+                string url = $"{apiBaseUrl}/api/Customer/{customerId}/CustomerMeasurement/";
                 ApiRequest apiRequest = new ApiRequest(url);
                 var response = await apiRequest.MakeHttpClientRequest(null, ApiRequest.Verbs.GET, null);
 

@@ -1,10 +1,17 @@
 ﻿@page
 @model FashionBiz.App.Pages.Customer.MyMeasurementsModel
 @{
-    ViewData["Title"] = "Customer Measurement";
+    ViewData["Title"] = "My Measurements";
     Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
 }
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-light">
+            <a href="/Customer/NewMeasurement" class="btn btn-primary" style="float:right">Add Measurement</a>
+        </div>
+    </div>
+</div>
 
 <table class="table datatable">
     <thead>
