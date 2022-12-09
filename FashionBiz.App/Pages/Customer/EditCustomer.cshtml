@@ -11,20 +11,20 @@
 <hr />
 <section class="section">
     <div class="row">
-        <div class="col-lg-8">
-            <input type="hidden" id="CustomerId" name="CustomerId" value='@Model.CustomerId' />
+        <div class="col-lg-8">           
             <span>@ViewData["Message"]</span>
             <form asp-action="">
+                 @Html.HiddenFor(model => model.CustomerId)
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">FirstName</label>
+                    <label class="col-sm-2 col-form-label">First Name</label>
                     <div class="col-sm-6">
                         <input type="text" name="Firstname" class="form-control" value="@Model.Firstname" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">lastName</label>
+                    <label class="col-sm-2 col-form-label">Last Name</label>
                     <div class="col-sm-6">
                         <input type="text" name="lastname" class="form-control" value="@Model.Lastname" />
                     </div>
@@ -70,7 +70,7 @@
                     </div>
                 </fieldset>
                 <div class="row mb-3">
-                    <input type="submit" value="Create" class="btn btn-primary col-sm-6 offset-md-2" />
+                    <input type="submit" value="Edit" class="btn btn-primary col-sm-8" />
                 </div>
             </form>
         </div>
@@ -83,10 +83,6 @@
         </div>
     </div>
 </section>
-<input type="button" id="AddCart" onclick="clickbtn()" value="Submit" style="display:none" />
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Styles{
     <style>

@@ -36,12 +36,11 @@ namespace FashionBiz.App.Pages.Customer
         [BindProperty]
         public string Gender { get; set; }
         public string[] Genders = new[] { "Male", "Female"};
-    
-    public async Task OnGetAsync(int customerId)
+
+        public async Task OnGetAsync(int customerId)
         {
             try
             {
-                ViewData["CustomerId"] = customerId;
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
                 string url = $"{apiBaseUrl}/api/customer/{customerId}";
                 ApiRequest apiRequest = new ApiRequest(url);
