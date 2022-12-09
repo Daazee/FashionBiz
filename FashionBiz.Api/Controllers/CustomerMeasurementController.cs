@@ -24,13 +24,6 @@ namespace FashionBiz.Api.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetCustomerMeasurement(long id)
-        {
-            var result = await _customerMeasurementRepository.GetItem(id);
-            return Ok(result);
-        }
-
         [HttpPost]
         public async Task<IActionResult> PostCustomerMeasurement(CustomerMeasurement customerMeasurement)
         {
