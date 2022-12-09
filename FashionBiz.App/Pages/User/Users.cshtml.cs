@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FashionBiz.App.Pages.User
 {
-    public class ListModel : PageModel
+    public class UsersModel : PageModel
     {
         public IEnumerable<UserListViewModel> userListViewModels { get; set; }
 
-        public IEnumerable<ListModel> userLstModels = null;
+        public IEnumerable<UsersModel> usersModel = null;
 
         public long UserId { get; set; }
         public string Username { get; set; }
@@ -25,7 +25,7 @@ namespace FashionBiz.App.Pages.User
                 {
                     string responseString = await response.Content.ReadAsStringAsync();
                     //var result = Newtonsoft.Json.JsonConvert.DeserializeObject<DefaultApiResponse<IEnumerable<UserListViewModel>>>(responseString);
-                    userListViewModels = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<UserListViewModel>>(responseString);
+                    usersModel = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<UsersModel>>(responseString);
                     //userLstModels = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<ListModel>>(responseString);
                     //if (result.Object != null)
                     //{

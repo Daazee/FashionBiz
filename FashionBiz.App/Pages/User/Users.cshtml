@@ -1,10 +1,16 @@
 ﻿@page
-@model FashionBiz.App.Pages.User.ListModel
+@model FashionBiz.App.Pages.User.UsersModel
 @{
     ViewData["Title"] = "Users";
     Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
 }
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 bg-light">
+            <a href="/User/NewUser" class="btn btn-primary" style="float:right">Add User</a>
+        </div>
+    </div>
+</div>
 <table class="table datatable">
     <thead>
         <tr>
@@ -17,16 +23,19 @@
         </tr>
     </thead>
     <tbody>
-         @foreach (var item in Model.userListViewModels)
+        @if (Model.usersModel != null)
         {
-        <tr>
-        <td>
-        @Html.DisplayFor(modelItem => item.UserId)
-        </td>
-        <td>
-        @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        </tr>
+            foreach (var item in Model.usersModel)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
