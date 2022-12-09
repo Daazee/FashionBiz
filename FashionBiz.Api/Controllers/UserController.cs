@@ -1,4 +1,5 @@
-﻿using FashionBiz.Api.Repository;
+﻿using FashionBiz.Api.Models.Entities;
+using FashionBiz.Api.Repository;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,20 @@ namespace FashionBiz.Api.Controllers
             Response.Headers.Add("Access-Control-Allow-Origin", "*");
             var result = await _userRepository.GetItems();
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PostUser(User user)
+        {
+            if (user != null)
+            {
+                var result = await _userRepository.AddItem(user);
+                return Ok(result);
+            }
+            else
+            {
+                return Ok();
+            }
         }
     }
 }
