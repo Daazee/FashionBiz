@@ -1,0 +1,47 @@
+﻿@page
+@model FashionBiz.App.Pages.User.NewUserModel
+@{
+        ViewData["Title"] = "New User";
+    Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>New User</h1>
+</div>
+<hr />
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <span>@ViewData["Message"]</span>
+            <form asp-action="">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Username</label>
+                    <div class="col-sm-6">
+                         @Html.TextBoxFor(model=> model.Username, new { @class = "form-control"})
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-6">
+                        @Html.PasswordFor(model=> model.Password, new { @class = "form-control"})
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-6">
+                        @Html.PasswordFor(model=> model.ConfirmPassword, new { @class = "form-control"})
+                    </div>
+                </div>
+                           
+
+                <div class="row mb-3">
+                    <input type="submit" value="Create" class="btn btn-primary col-sm-8" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
