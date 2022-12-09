@@ -11,10 +11,12 @@ namespace FashionBiz.Api.Controllers
     {
 
         private readonly ICustomerRepository _customerRepository;
+        private readonly ICustomerMeasurementRepository _customerMeasurementRepository;
 
-        public CustomerController(ICustomerRepository customerRepository)
+        public CustomerController(ICustomerRepository customerRepository, ICustomerMeasurementRepository customerMeasurementRepository)
         {
             _customerRepository = customerRepository;
+            _customerMeasurementRepository = customerMeasurementRepository;
         }
 
         [HttpGet]
@@ -50,6 +52,13 @@ namespace FashionBiz.Api.Controllers
         {
 
             var result = await _customerRepository.UpdateItem(customer);
+            return Ok(result);
+        }
+
+        [HttpGet("{id:long}/CustomerMeasurement")]
+        public async Task<IActionResult> GetCustomerMeasurement(long id)
+        {
+            var result = await _customerMeasurementRepository.GetMeasurementByCustomerIdAsync(id);
             return Ok(result);
         }
     }
