@@ -60,7 +60,8 @@
                 </td>
                 <td>
                   @*  @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId })*@
-                  <a href="/Customer/EditCustomer?customerId=@item.CustomerId">Edit</a>
+                  @*<a href="/Customer/EditCustomer?customerId=@item.CustomerId">Edit</a>*@
+                  <a asp-page="/Customer/EditCustomer" asp-route-customerId="@item.CustomerId">Edit</a>
                 </td>
             </tr>
         }
