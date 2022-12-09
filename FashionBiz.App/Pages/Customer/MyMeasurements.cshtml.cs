@@ -4,13 +4,15 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace FashionBiz.App.Pages.Customer
 {
-    public class NewMeasurementModel : PageModel
+    public class MyMeasurementsModel : PageModel
     {
         IConfiguration Configuration;
-        public NewMeasurementModel(IConfiguration configuration)
+
+        public MyMeasurementsModel(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+        public long MeasurementId { get; set; }
 
         [BindProperty]
         public string GarmentType { get; set; }
@@ -38,47 +40,29 @@ namespace FashionBiz.App.Pages.Customer
 
         [BindProperty]
         public long CustomerId { get; set; }
-        public void OnGet()
-        {
-        }
 
-        public async Task OnPost()
+        public IEnumerable<MyMeasurementsModel> MyMeasurements { get; set; }
+        public async Task OnGetAsync(int customerId)
         {
             try
             {
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
-                string url = $"{apiBaseUrl}http://localhost:5029/api/customer/";
-
-                object customerMeasurement = new
-                {
-                    CustomerId = CustomerId,
-                    GarmentType = GarmentType,
-                    Generalsize = Generalsize,
-                    MeasurementType = MeasurementType,
-                    Chest = Chest,
-                    Collar = Collar,
-                    Arm = Arm,
-                    Back = Back,
-                    Waist = Waist
-
-                };
-
+                string url = $"{apiBaseUrl}/api/CustomerMeasurement/GetCustomerMeasurement/{customerId}";
                 ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(customerMeasurement, ApiRequest.Verbs.POST, null);
+                var response = await apiRequest.MakeHttpClientRequest(null, ApiRequest.Verbs.GET, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {
                     string responseString = await response.Content.ReadAsStringAsync();
-                    //userListViewModels = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<UserListViewModel>>(responseString);
-                    ViewData["Message"] = "Customer Created Successfully";
-                }
+                    MyMeasurements = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<MyMeasurementsModel>>(responseString);
 
+                }
             }
             catch (Exception ex)
             {
-                ViewData["Message"] = ex.Message;
+
+                throw;
             }
         }
-
     }
 }

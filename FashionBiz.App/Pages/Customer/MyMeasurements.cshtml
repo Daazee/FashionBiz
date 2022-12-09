@@ -1,0 +1,65 @@
+﻿@page
+@model FashionBiz.App.Pages.Customer.MyMeasurementsModel
+@{
+    ViewData["Title"] = "Customer Measurement";
+    Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
+}
+
+
+<table class="table datatable">
+    <thead>
+        <tr>
+            <th>
+                Garment Type
+            </th>
+            <th>
+                General Size
+            </th>
+            <th>
+                Measurement Type
+            </th>
+            <th>
+                Chest
+            </th>
+            <th>
+                Collar
+            </th>
+            <th>
+                Arm
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.MyMeasurements != null)
+        {
+            foreach (var item in Model.MyMeasurements)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GarmentType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Generalsize)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MeasurementType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Chest)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Collar)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Arm)
+                    </td>
+                    <td>
+                        @*  @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId })*@
+                        <a href="/Customer/EditMeasurement?measurementId=@item.CustomerId">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
