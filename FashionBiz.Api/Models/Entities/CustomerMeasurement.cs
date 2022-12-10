@@ -9,7 +9,7 @@
         public int Chest { get; set; }
         public int Collar { get; set; }
         public int Arm { get; set; }
-        public long Back { get; set; }
+        public int Back { get; set; }
         public int Waist { get; set; }
         public long CustomerId { get; set; }
     }
