@@ -1,0 +1,67 @@
+﻿@page
+@model FashionBiz.App.Pages.Company.EditCompanyModel
+@{
+    ViewData["Title"] = "Edit Company";
+    Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
+}
+
+<div class="pagetitle">
+    <h1>Edit Company</h1>
+</div>
+<hr />
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <span>@ViewData["Message"]</span>
+            <form asp-action="">
+                @Html.HiddenFor(model => model.CompanyId)
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Company Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="Name" class="form-control" value="@Model.Name" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Short Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="ShortName" class="form-control" value="@Model.ShortName" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Phone Number 1</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="Phone1" class="form-control" value="@Model.Phone1" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Phone Number 2</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="Phone2" class="form-control" value="@Model.Phone2" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Email Address</label>
+                    <div class="col-sm-6">
+                        <input type="email" name="Email" class="form-control" value="@Model.Email" />
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Address</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="Address" class="form-control" value="@Model.Address" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <input type="submit" value="Edit" class="btn btn-primary col-sm-8" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>

@@ -25,5 +25,27 @@ namespace FashionBiz.Api.Controllers
             var result = await _companyRepository.AddItem(requestDTO);
             return Ok(result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> EditCustomer(Company company)
+        {
+
+            var result = await _companyRepository.UpdateItem(company);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetCompanies()
+        {
+            var result = await _companyRepository.GetItems();
+            return Ok(result);
+        }
+
+        [HttpGet("{id:long}")]
+        public async Task<IActionResult> GetCompany(long id)
+        {
+            var result = await _companyRepository.GetItem(id);
+            return Ok(result);
+        }
     }
 }
