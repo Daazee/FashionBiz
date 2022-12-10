@@ -33,7 +33,7 @@ namespace FashionBiz.App.Pages.Customer
         public int Arm { get; set; }
 
         [BindProperty]
-        public long Back { get; set; }
+        public int Back { get; set; }
 
         [BindProperty]
         public int Waist { get; set; }
@@ -46,6 +46,7 @@ namespace FashionBiz.App.Pages.Customer
         {
             try
             {
+                ViewData["CustomerId"] = customerId;
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
                 string url = $"{apiBaseUrl}/api/Customer/{customerId}/CustomerMeasurement/";
                 ApiRequest apiRequest = new ApiRequest(url);

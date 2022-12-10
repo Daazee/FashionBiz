@@ -31,23 +31,24 @@ namespace FashionBiz.App.Pages.Customer
         public int Arm { get; set; }
 
         [BindProperty]
-        public long Back { get; set; }
+        public int Back { get; set; }
 
         [BindProperty]
         public int Waist { get; set; }
 
         [BindProperty]
         public long CustomerId { get; set; }
-        public void OnGet()
+        public void OnGet(long customerId)
         {
+            CustomerId = customerId;
         }
 
-        public async Task OnPost()
+        public async Task<IActionResult> OnPost()
         {
             try
             {
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
-                string url = $"{apiBaseUrl}http://localhost:5029/api/customer/";
+                string url = $"{apiBaseUrl}/api/customermeasurement/";
 
                 object customerMeasurement = new
                 {
@@ -77,7 +78,9 @@ namespace FashionBiz.App.Pages.Customer
             catch (Exception ex)
             {
                 ViewData["Message"] = ex.Message;
+                return Page();
             }
+            return RedirectToPage("/Customer/MyMeasurements", new { customerId = CustomerId });
         }
 
     }

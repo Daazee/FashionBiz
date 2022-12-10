@@ -8,7 +8,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 bg-light">
-            <a href="/Customer/NewMeasurement" class="btn btn-primary" style="float:right">Add Measurement</a>
+            <a href="/Customer/NewMeasurement?customerId=@ViewData["CustomerId"]" class="btn btn-primary" style="float:right">Add Measurement</a>
+            @*<a asp-page="/Customer/NewMeasurement?" asp-route-customerId="@Model.My.CustomerId" class="btn btn-primary" style="float:right">Add Measurement</a>*@
         </div>
     </div>
 </div>

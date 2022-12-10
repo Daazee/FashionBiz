@@ -15,15 +15,15 @@
         <div class="col-lg-12">
             <form asp-action="">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
+                  @Html.HiddenFor(model => model.CustomerId)
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Garment Type</label>
                     <div class="col-sm-6">
                         <select asp-for="GarmentType" name="GarmentType" id="GarmentType" class="form-control">
                             <option value="Select" selected>Select</option>
-                            <option value="Thoup">Thoup"></option>
-                            <option value="Garment 1">Garment 1</option>
-                            <option value="Garment 2">Garment 2</option>
+                            <option value="Toyobo">Toyobo</option>
+                            <option value="Sikibo">Sikibo</option>
+                            <option value="Normal">Normal</option>
                         </select>
                     </div>
                 </div>
@@ -35,9 +35,21 @@
                     <div class="col-sm-6">
                         <select asp-for="Generalsize" name="Generalsize" id="Generalsize" class="form-control">
                             <option value="Select" selected>Select</option>
-                            <option value="Large">Thoup"></option>
+                            <option value="Large">Large</option>
                             <option value="Medium">Medium</option>
                             <option value="Small">Small</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Measurement Type</label>
+                    <div class="col-sm-6">
+                        <select asp-for="Generalsize" name="MeasurementType" id="MeasurementType" class="form-control">
+                            <option value="Select" selected>Select</option>
+                            <option value="1">Measurement 1</option>
+                            <option value="2">Measurement 2</option>
+                            <option value="3">Measurement 3</option>
                         </select>
                     </div>
                 </div>
@@ -57,33 +69,29 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Sex</label>
 
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Back</label>
                     <div class="col-sm-6">
-                        <select name="Subject" id="sex" class="form-control">
-                            <option value="Select" selected>Select</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                        </select>
+                      <input type="number" id="Back" name="Back" class="form-control" />
                     </div>
                 </div>
 
                 <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Address Line 1</label>
+                    <label class="col-sm-2 col-form-label">Waist</label>
                     <div class="col-sm-6">
-                        <textarea name="address_line_1" class="form-control"> </textarea>
+                         <input type="number" id="Waist" name="Waist" class="form-control" />
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label class="col-sm-2 col-form-label">Address Line 2</label>
+                 <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Arm</label>
                     <div class="col-sm-6">
-                        <textarea name="address_line_2" class="form-control"> </textarea>
+                        <input type="number" id="Arm" name="Arm" class="form-control" />
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <input type="submit" value="Create" class="btn btn-primary col-sm-6 offset-md-2" />
+                    <input type="submit" value="Create" class="btn btn-primary col-sm-6" />
                 </div>
             </form>
         </div>
