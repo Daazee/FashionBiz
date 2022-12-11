@@ -31,6 +31,11 @@ builder.Services.AddScoped<ICompanyRepository, FashionBiz.Api.DAL.CompanyReposit
 builder.Services.AddScoped<IUserRepository, FashionBiz.Api.DAL.UserRepository>();
 builder.Services.AddScoped<ICustomerRepository, FashionBiz.Api.DAL.CustomerRepository>();
 builder.Services.AddScoped<ICustomerMeasurementRepository, FashionBiz.Api.DAL.CustomerMeasurementRepository>();
+builder.Services.AddScoped<IPaymentDetailRepository, FashionBiz.Api.DAL.PaymentDetailRepository>();
+builder.Services.AddScoped<IProductCategoryRepository, FashionBiz.Api.DAL.ProductCategoryRepository>();
+builder.Services.AddScoped<IProductDetailRepository, FashionBiz.Api.DAL.ProductDetailRepository>();
+builder.Services.AddScoped<ISalesRepository, FashionBiz.Api.DAL.SalesRepository>();
+builder.Services.AddScoped<IStockRepository, FashionBiz.Api.DAL.StockRepository>();
 
 
 var app = builder.Build();
