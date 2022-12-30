@@ -24,6 +24,12 @@ namespace FashionBiz.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetProductCategory(long id)
+        {
+            var result = await _productCategoryRepository.GetItem(id);
+            return Ok(result);
+        }
         [HttpPost]
         public async Task<IActionResult> PostProductCategory(ProductCategory productCategory)
         {
@@ -40,6 +46,14 @@ namespace FashionBiz.Api.Controllers
 
         [HttpPut]
         public async Task<IActionResult> EditProductCategory(ProductCategory productCategory)
+        {
+
+            var result = await _productCategoryRepository.UpdateItem(productCategory);
+            return Ok(result);
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> PatchProductCategory(ProductCategory productCategory)
         {
 
             var result = await _productCategoryRepository.UpdateItem(productCategory);

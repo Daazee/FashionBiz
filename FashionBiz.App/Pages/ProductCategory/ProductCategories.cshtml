@@ -15,7 +15,7 @@
                 <div class="row mb-3">
                     <label class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-6">
-                        <input type="text" name="ProductCategoryName" id="ProductCategoryName" class="form-control" />
+                        <input type="text" name="ProductCategoryName" id="ProductCategoryName" class="form-control"/>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -57,7 +57,7 @@
                     </td>
                     <td>
                         @*  @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId })*@
-                        <a href="/Customer/EditMeasurement?measurementId=@item.ProductCategoryId">Edit</a>
+                        <a id="Edit" href="@item.ProductCategoryId" class="btn btn-primary editCategory">Edit</a>
                     </td>
                 </tr>
             }

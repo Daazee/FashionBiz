@@ -18,8 +18,8 @@ namespace FashionBiz.App.Pages.User
             try
             {
                 string url = "http://localhost:5029/api/user/";
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(null, ApiRequest.Verbs.GET, null);
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, null, ApiRequest.Verbs.GET, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {

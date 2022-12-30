@@ -19,18 +19,24 @@ namespace FashionBiz.App.Pages.ProductCategory
         }
         public IEnumerable<ProductCategoriesModel> ProductCategories { get; set; }
 
+        [BindProperty]
         public int ProductCategoryId { get; set; }
+
+        [BindProperty]
 
         [Display(Name = "Product Category")]
         public string ProductCategoryName { get; set; }
 
+        [BindProperty]
         public string Flag { get; set; }
 
+        [BindProperty]
         public string CreatedBy { get; set; }
 
+        [BindProperty]
         public string ModifiedBy { get; set; }
 
-
+        [BindProperty]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreatedOn { get; set; }
         public async Task OnGetAsync(int customerId)
@@ -40,8 +46,8 @@ namespace FashionBiz.App.Pages.ProductCategory
                 ViewData["CustomerId"] = customerId;
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
                 string url = $"{apiBaseUrl}/api/ProductCategory/";
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(null, ApiRequest.Verbs.GET, null);
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, null, ApiRequest.Verbs.GET, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {
@@ -57,21 +63,33 @@ namespace FashionBiz.App.Pages.ProductCategory
             }
         }
 
-        public async Task<IActionResult> OnPostAddProductCategoryAsync([FromBody] ProductCategoryCreateModel productCategory)
+        public async Task<IActionResult> OnPostManageProductCategoryAsync([FromBody] ProductCategoryCreateModel productCategory)
         {
             try
             {
+                ApiRequest apiRequest = new ApiRequest();
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
                 string url = $"{apiBaseUrl}/api/productcategory/";
+                ApiRequest.Verbs verb = ApiRequest.Verbs.PATCH;
 
-
-                productCategory.CreatedBy = "admin";
+                if (productCategory.ProductCategoryId == 0 && productCategory.Flag == "A")
+                {
+                    productCategory.CreatedBy = "admin";
+                    productCategory.CreatedOn = DateTime.Now;
+                    verb = ApiRequest.Verbs.POST;
+                }
+                else
+                {
+                    var response1 = await apiRequest.MakeHttpClientRequest(url, null, ApiRequest.Verbs.GET, null);
+                
+                }
                 productCategory.ModifiedBy = "admin";
-                productCategory.CreatedOn = DateTime.Now;
                 productCategory.ModifiedOn = DateTime.Now;
+                productCategory.CreatedBy = "admin";
+                productCategory.CreatedOn = DateTime.Now;
 
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(productCategory, ApiRequest.Verbs.POST, null);
+                
+                var response = await apiRequest.MakeHttpClientRequest(url, productCategory, verb, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {
@@ -88,5 +106,32 @@ namespace FashionBiz.App.Pages.ProductCategory
             }
             return RedirectToPage("/ProductCategory/ProductCategories");
         }
+
+        public async Task<JsonResult> OnGetRetrieveProductCategoryByIdAsync([FromQuery] long id)
+        {
+            ProductCategoriesModel result = new ProductCategoriesModel(Configuration);
+            try
+            {
+                string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
+                string url = $"{apiBaseUrl}/api/ProductCategory/{id}";
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, null, ApiRequest.Verbs.GET, null);
+
+                if (Convert.ToInt16(response.StatusCode) == 200)
+                {
+                    string responseString = await response.Content.ReadAsStringAsync();
+                    result = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductCategoriesModel>(responseString);
+                    //ProductCategoryName = productCategory.ProductCategoryName;
+                    //ProductCategoryId = productCategory.ProductCategoryId;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                ViewData["Message"] = ex.Message;
+            }
+            return new JsonResult(result);
+        }
+
     }
 }

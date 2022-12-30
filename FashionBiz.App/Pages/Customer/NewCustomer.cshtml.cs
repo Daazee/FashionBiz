@@ -77,8 +77,8 @@ namespace FashionBiz.App.Pages.Customer
 
                 };
 
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(customer, ApiRequest.Verbs.POST, null);
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, customer, ApiRequest.Verbs.POST, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {

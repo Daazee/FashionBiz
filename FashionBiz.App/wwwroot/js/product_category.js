@@ -8,7 +8,7 @@
         var flag = $('#Flag').val();
         var productCategoryId = $('#ProductCategoryId').val();
 
-        if (productCategoryName == "") {
+        if (productCategoryName === "") {
             alert("Please enter product category");
             $('#ProductCategoryName').focus();
             return;
@@ -24,8 +24,8 @@
         //var url = '../../api/ProductCategory/AddProductCategory'; //add
         var confirmMessage = "Are you sure you want to add this category";
 
-        if (flag == "U") { //update
-            type = "PATCH";
+        if (flag === "U") { //update
+          //  type = "PATCH";
             confirmMessage = "Are you sure you want to update this category";
         }
 
@@ -37,7 +37,7 @@
 
             debugger;
             $.ajax({
-                url: "/ProductCategory/ProductCategories?handler=AddProductCategory",
+                url: "/ProductCategory/ProductCategories?handler=ManageProductCategory",
                 type: type,
                 contentType: 'application/json',
                 data: JSON.stringify(productCategory),
@@ -59,4 +59,44 @@
         }
 
     })
+    $('.editCategory').click(function (e) {
+        debugger;
+        var id = $(this).attr('id');
+        if (id == 'Edit') {
+            e.preventDefault();
+            e.stopPropagation();
+            var ProductCategoryID = $(this).attr("href");
+        }
+        $.ajax({
+            url: "/ProductCategory/ProductCategories?handler=RetrieveProductCategoryById",
+            cache: false,
+            type: 'GET',
+            contentType: 'application/json',
+            data: {
+                id: Number(ProductCategoryID)
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            success: successFunc,
+            error: errorFunc
+        });
+
+        function successFunc(response) {
+            debugger;
+            console.log(response);
+            if (response !== null) {
+                $('#ProductCategoryName').val(response.productCategoryName);
+                $('#Flag').val("U");
+                $('#Save').val("Update");
+                $('#ProductCategoryId').val(response.productCategoryId);
+            }
+        }
+
+        function errorFunc(error) {
+            console.log(error);
+        }
+    })
+
 });

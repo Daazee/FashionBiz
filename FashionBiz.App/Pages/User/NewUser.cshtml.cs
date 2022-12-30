@@ -46,8 +46,8 @@ namespace FashionBiz.App.Pages.User
                     Password = hashPassword
                 };
 
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(user, ApiRequest.Verbs.POST, null);
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, user, ApiRequest.Verbs.POST, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {

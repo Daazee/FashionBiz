@@ -23,12 +23,7 @@ namespace FashionBiz.App.Utilities
         public object Data { get; set; }
         public string Url { get; set; }
 
-        public ApiRequest(string url)
-        {
-            this.Url = url;
-        }
-
-        public async Task<HttpResponseMessage> MakeHttpClientRequest(object data = null, Verbs method = Verbs.POST, Dictionary<string, string> headers = null)
+        public async Task<HttpResponseMessage> MakeHttpClientRequest(string url, object data = null, Verbs method = Verbs.POST, Dictionary<string, string> headers = null)
         {
             HttpResponseMessage response = null;
             using (var httpClient = new HttpClient())
@@ -58,7 +53,7 @@ namespace FashionBiz.App.Utilities
                 else if (method.Equals(Verbs.PATCH))
                 {
                     var meth = new HttpMethod("PATCH");
-                    var request = new HttpRequestMessage(meth, Url)
+                    var request = new HttpRequestMessage(meth, url)
                     {
                         Content = content
                     };
@@ -75,14 +70,14 @@ namespace FashionBiz.App.Utilities
                 }
                 else if (method.Equals(Verbs.GET))
                 {
-                    response = await httpClient.GetAsync(this.Url);
+                    response = await httpClient.GetAsync(url);
                 }
                 return response;
             }
 
         }
 
-        public async Task<HttpResponseMessage> MakeHttpClientEncryptedRequest(string data = null, Verbs method = Verbs.POST, Dictionary<string, string> headers = null)
+        public async Task<HttpResponseMessage> MakeHttpClientEncryptedRequest(string url, string data = null, Verbs method = Verbs.POST, Dictionary<string, string> headers = null)
         {
             HttpResponseMessage response = null;
             using (var httpClient = new HttpClient())
@@ -117,7 +112,7 @@ namespace FashionBiz.App.Utilities
                 }
                 else if (method.Equals(Verbs.GET))
                 {
-                    response = await httpClient.GetAsync(this.Url);
+                    response = await httpClient.GetAsync(url);
                 }
                 return response;
             }

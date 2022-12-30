@@ -49,8 +49,8 @@ namespace FashionBiz.App.Pages.Customer
                 ViewData["CustomerId"] = customerId;
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
                 string url = $"{apiBaseUrl}/api/Customer/{customerId}/CustomerMeasurement/";
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(null, ApiRequest.Verbs.GET, null);
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, null, ApiRequest.Verbs.GET, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {

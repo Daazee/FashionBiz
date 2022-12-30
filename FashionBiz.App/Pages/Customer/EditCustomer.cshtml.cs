@@ -43,8 +43,8 @@ namespace FashionBiz.App.Pages.Customer
             {
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
                 string url = $"{apiBaseUrl}/api/customer/{customerId}";
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(null, ApiRequest.Verbs.GET, null);
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, null, ApiRequest.Verbs.GET, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {
@@ -100,8 +100,8 @@ namespace FashionBiz.App.Pages.Customer
 
                 };
 
-                ApiRequest apiRequest = new ApiRequest(url);
-                var response = await apiRequest.MakeHttpClientRequest(customer, ApiRequest.Verbs.PUT, null);
+                ApiRequest apiRequest = new ApiRequest();
+                var response = await apiRequest.MakeHttpClientRequest(url, customer, ApiRequest.Verbs.PUT, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {
