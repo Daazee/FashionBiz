@@ -1,0 +1,70 @@
+﻿@page
+@model FashionBiz.App.Pages.ProductCategory.ProductCategoriesModel
+@{
+    ViewData["Title"] = "Product Categories";
+    Layout = "~/Pages/Shared/_FashionMainLayout.cshtml";
+}
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <span>@ViewData["Message"]</span>
+            <form asp-action="">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="ProductCategoryName" id="ProductCategoryName" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <input type="submit" id="Save" value="Save" class="btn btn-primary col-sm-8" />
+                </div>
+
+                <div style="display:none">
+                    @Html.TextBox("Flag", "A")
+                    @Html.TextBox("ProductCategoryId")
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<table class="table datatable">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Created On
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ProductCategories != null)
+        {
+            foreach (var item in Model.ProductCategories)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductCategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedOn)
+                    </td>
+                    <td>
+                        @*  @Html.ActionLink("Edit", "Edit", new { id = item.CustomerId })*@
+                        <a href="/Customer/EditMeasurement?measurementId=@item.ProductCategoryId">Edit</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="~/js/product_category.js"></script>
+}
