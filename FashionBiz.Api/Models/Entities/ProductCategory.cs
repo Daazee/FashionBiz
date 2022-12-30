@@ -5,7 +5,7 @@ namespace FashionBiz.Api.Models.Entities
     public class ProductCategory
     {
         [Key]
-        public int ProductCategoryId { get; set; }
+        public long ProductCategoryId { get; set; }
 
         [Required]
         [Display(Name = "Product Category")]
@@ -24,7 +24,7 @@ namespace FashionBiz.Api.Models.Entities
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ModifiedOn { get; set; }
 
-        public virtual ICollection<ProductDetail> ProductDetail { get; set; }
+        public virtual ICollection<ProductDetail>? ProductDetail { get; set; }
 
     }
 }

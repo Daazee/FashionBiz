@@ -6,14 +6,14 @@ namespace FashionBiz.Api.Models.Entities
     public class Stock
     {
         [Key]
-        public int StockId { get; set; }
+        public long StockId { get; set; }
 
         [Display(Name = "Product Category Code")]
-        public int ProductCategoryId { get; set; }
+        public long ProductCategoryId { get; set; }
 
         [Display(Name = "Product Code")]
         [ForeignKey("ProductDetail")]
-        public int ProductDetailId { get; set; }
+        public long ProductDetailId { get; set; }
 
         [Display(Name = "Stock Level")]
         public int StockLevel { get; set; }

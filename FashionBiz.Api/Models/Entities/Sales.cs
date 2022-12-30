@@ -5,16 +5,16 @@ namespace FashionBiz.Api.Models.Entities
 {
     public class Sales
     {
-        public int SalesId { get; set; }
+        public long SalesId { get; set; }
 
         public string TransactionNo { get; set; }
 
         [Display(Name = "Product Category")]
-        public int ProductCategoryID { get; set; }
+        public long ProductCategoryID { get; set; }
 
         [Display(Name = "Product Code")]
         [ForeignKey("ProductDetail")]
-        public int ProductDetailId { get; set; }
+        public long ProductDetailId { get; set; }
 
         public int Quantity { get; set; }
 

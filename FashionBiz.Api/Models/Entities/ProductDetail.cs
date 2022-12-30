@@ -6,12 +6,12 @@ namespace FashionBiz.Api.Models.Entities
     public class ProductDetail
     {
         [Key]
-        public int ProductDetailId { get; set; }
+        public long ProductDetailId { get; set; }
 
         [Required]
         [ForeignKey("ProductCategory")]
         [Display(Name = "Product Category Code")]
-        public int ProductCategoryId { get; set; }
+        public long ProductCategoryId { get; set; }
 
         [Required]
         [Display(Name = "Product Name")]

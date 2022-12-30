@@ -5,7 +5,7 @@ namespace FashionBiz.Api.Models.Entities
     public class PaymentDetail
     {
         [Key]
-        public int PaymentId { get; set; }
+        public long PaymentId { get; set; }
 
         [Required]
         [Display(Name = "Payment Number")]
