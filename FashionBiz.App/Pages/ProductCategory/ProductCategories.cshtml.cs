@@ -69,33 +69,38 @@ namespace FashionBiz.App.Pages.ProductCategory
             {
                 ApiRequest apiRequest = new ApiRequest();
                 string apiBaseUrl = Configuration.GetValue<string>("ApiBaseUrl");
-                string url = $"{apiBaseUrl}/api/productcategory/";
+                string url = $"{apiBaseUrl}/api/productcategory";
                 ApiRequest.Verbs verb = ApiRequest.Verbs.PATCH;
-
+                object request = null;
                 if (productCategory.ProductCategoryId == 0 && productCategory.Flag == "A")
                 {
-                    productCategory.CreatedBy = "admin";
-                    productCategory.CreatedOn = DateTime.Now;
                     verb = ApiRequest.Verbs.POST;
+                    request = new
+                    {
+                        ProductCategoryId = productCategory.ProductCategoryId,
+                        ProductCategoryName = productCategory.ProductCategoryName,
+                        Flag = "A",
+                        CreatedBy = "admin",
+                        ModifiedBy = "admin",
+                        CreatedOn = DateTime.Now,
+                        ModifiedOn = DateTime.Now
+                    };
                 }
                 else
                 {
-                    var response1 = await apiRequest.MakeHttpClientRequest(url, null, ApiRequest.Verbs.GET, null);
-                
+                    request = new
+                    {
+                        ProductCategoryId = productCategory.ProductCategoryId,
+                        ProductCategoryName = productCategory.ProductCategoryName,
+                        UserId = "admin"
+                    };
                 }
-                productCategory.ModifiedBy = "admin";
-                productCategory.ModifiedOn = DateTime.Now;
-                productCategory.CreatedBy = "admin";
-                productCategory.CreatedOn = DateTime.Now;
-
-                
-                var response = await apiRequest.MakeHttpClientRequest(url, productCategory, verb, null);
+                var response = await apiRequest.MakeHttpClientRequest(url, request, verb, null);
 
                 if (Convert.ToInt16(response.StatusCode) == 200)
                 {
                     string responseString = await response.Content.ReadAsStringAsync();
-                    //userListViewModels = Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<UserListViewModel>>(responseString);
-                    ViewData["Message"] = "Customer Created Successfully";
+                    ViewData["Message"] = "Product Category Created Successfully";
                 }
 
             }
@@ -121,8 +126,6 @@ namespace FashionBiz.App.Pages.ProductCategory
                 {
                     string responseString = await response.Content.ReadAsStringAsync();
                     result = Newtonsoft.Json.JsonConvert.DeserializeObject<ProductCategoriesModel>(responseString);
-                    //ProductCategoryName = productCategory.ProductCategoryName;
-                    //ProductCategoryId = productCategory.ProductCategoryId;
                 }
 
             }

@@ -46,7 +46,7 @@ namespace FashionBiz.App.Utilities
                     if (data == null)
                         data = new { };
 
-                    response = await httpClient.PostAsync($"{Url}", content);
+                    response = await httpClient.PostAsync($"{url}", content);
 
 
                 }

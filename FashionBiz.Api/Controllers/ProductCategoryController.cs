@@ -1,4 +1,5 @@
-﻿using FashionBiz.Api.Models.Entities;
+﻿using FashionBiz.Api.DTOs.Request;
+using FashionBiz.Api.Models.Entities;
 using FashionBiz.Api.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -53,10 +54,19 @@ namespace FashionBiz.Api.Controllers
         }
 
         [HttpPatch]
-        public async Task<IActionResult> PatchProductCategory(ProductCategory productCategory)
+        public async Task<IActionResult> PatchProductCategory(ProductCategoryUpdateRequestDTO requestDTO)
         {
+            var result = await _productCategoryRepository.GetItem(requestDTO.ProductCategoryId);
+            if (result != null)
+            {
+                result.ProductCategoryName = requestDTO.ProductCategoryName;
+                result.ProductCategoryId = requestDTO.ProductCategoryId;
+                result.Flag = "U";
+                result.ModifiedBy = requestDTO.UserId;
+                result.ModifiedOn = DateTime.Now;
+                result = await _productCategoryRepository.UpdateItem(result);
+            }
 
-            var result = await _productCategoryRepository.UpdateItem(productCategory);
             return Ok(result);
         }
     }
